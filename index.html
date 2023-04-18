@@ -9,404 +9,430 @@
     <link rel="stylesheet" href="static/style.css">
   </head>
 
-  <body class="hero">
-<div class="px-4 py-1 my-3 text-center">
+<body class="hero">
+  <div class="px-4 py-1 my-3 text-center">
 
-    <h1 class="display-5 fw-bold mainsentence">침착맨은 어떤 말을 더 자주 할까?</h1>
-    <p class="lead mb-4 mainsentence" id="progress"></p>
-    <button class="btn btn-primary" id="nextBtn" style="display:none;">다음 문제</button>
-    <div class="col-lg-6 mx-auto">
+      <h1 class="display-5 fw-bold mainsentence">침착맨은 어떤 말을 더 자주 할까?</h1>
+
+      <div class="container py-0 mx-auto mainsentence fw-bold display-6">
+        <div class="row mx-auto">
+          <div class="col-md-4 text-left" id="progress">문제번호</div>
+          <div class="col-md-4 text-center">
+            <button class="btn btn-primary" id="nextBtn" style="display:none;">다음 문제</button>
+          </div>
+          <div class="col-md-4 text-right" id="scorePlace">점수</div>
+        </div>
+      </div>
 
 
-        <div class="container py-4">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title" style="color:black" id="word1">Card title</h3>
-                        <div class="d-grid gap-2">
-                          <button class="btn btn-primary" id="btn1">선택</button>
-                        </div>
-                    </div>
-                  <iframe id="video1" width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe>
+
+
+      <div class="col-lg-10 mx-auto">
+
+
+          <div class="container py-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                      <div class="card-body">
+                          <h3 class="card-title" style="color:black" id="word1">Card title</h3>
+                          <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="btn1">선택</button>
+                          </div>
+                      </div>
+                    <iframe id="video1" width="100%" height="360" src="" frameborder="0" allowfullscreen></iframe>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title" style="color:black" id="word2">Card title</h3>
-                        <div class="d-grid gap-2">
-                          <button class="btn btn-primary" id="btn2">선택</button>
-                        </div>
-                    </div>
-                  <iframe id="video2" width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe>
+                <div class="col-md-6">
+                  <div class="card">
+                      <div class="card-body">
+                          <h3 class="card-title" style="color:black" id="word2">Card title</h3>
+                          <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="btn2">선택</button>
+                          </div>
+                      </div>
+                    <iframe id="video2" width="100%" height="360" src="" frameborder="0" allowfullscreen></iframe>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
 
-    </div>
+      </div>
 
-    <!-- <div class="col-lg-6 py-2 mx-auto">
-      <form action="/" method="get"> <button type="submit" style="background:white; border:none; text-decoration:underline; color:blue; font-size:large;">🔍침착맨 대사 검색기로 가기</button></form>
-    </div> -->
+      <div class="col-lg-6 py-2 mx-auto">
+        <button type="button" onclick="location.href='https://chimlang.pythonanywhere.com'" style="background:white; border:none; text-decoration:underline; color:blue; font-size:large;">🔍침착맨 대사 검색기로 가기</button>
+      </div>
 
-</div>
-</body>
+  </div>
+  </body>
 
 <script>
 
-let pairs = [
-  [{
-    word: "오케이",
-    frequency: 9172,
-    videoId: "ENVN5ZnM3aM",
-    start: 1615
-  },
-  {
-    word: "약간",
-    frequency: 31978,
-    videoId: "NaUaHNct5U4",
-    start:920
-  }],
-  [{
-    word: "왼쪽",
-    frequency: 10794,
-    videoId: "6Di6dOV396k",
-    start: 1797
-  },
-  {
-    word: "오른쪽",
-    frequency: 8151,
-    videoId: "6Di6dOV396k",
-    start: 1781
-  }],
-  [{
-    word: "아저씨",
-    frequency: 7525,
-    videoId: "mikIpYryHqo",
-    start: 729
-  },
-  {
-    word: "마찬가지",
-    frequency: 889,
-    videoId: "qKRGsHDXNa0",
-    start: 240
-  }],
-  [{
-    word: "기안",
-    frequency: 525,
-    videoId: "MNJBLTaBSPU",
-    start: 5
-  },
-  {
-    word: "호민 (주호민은 안 포함)",
-    frequency: 748,
-    videoId: "NaUaHNct5U4",
-    start: 554
-  }],
-  [{
-    word: "왜냐면",
-    frequency: 9797,
-    videoId: "nsNvtmEV32Q",
-    start: 790
-  },
-  {
-    word: "오히려",
-    frequency: 8611,
-    videoId: "RZm9KViZIxk",
-    start: 548
-  }],
-  [{
-    word: "포켓몬",
-    frequency: 3734,
-    videoId: "qKRGsHDXNa0",
-    start: 772
-  },
-  {
-    word: "삼국지",
-    frequency: 2578,
-    videoId: "3tt8TrIeOts",
-    start: 1201
-  }],
-  [{
-    word: "시청자",
-    frequency: 3228,
-    videoId: "Emw6H8dqZCg",
-    start: 41
-  },
-  {
-    word: "유튜브",
-    frequency: 5429,
-    videoId: "2JbgpQa0rV4",
-    start: 325
-  }],
-  [{
-    word: "도발",
-    frequency: 3198,
-    videoId: "wlxLdbb3L7o",
-    start: 345
-  },
-  {
-    word: "천보",
-    frequency: 365,
-    videoId: "9BF_ZhmCY-U",
-    start: 41
-  }],
-  [{
-    word: "컴퓨터",
-    frequency: 3669,
-    videoId: "A5J8DfvPt28",
-    start: 1005
-  },
-  {
-    word: "선생님",
-    frequency: 7680,
-    videoId: "nsNvtmEV32Q",
-    start: 1292
-  }],
-  [{
-    word: "여기",
-    frequency: 103495,
-    videoId: "RZm9KViZIxk",
-    start: 242
-  },
-  {
-    word: "거기",
-    frequency: 27006,
-    videoId: "8oxUo5b3-2M",
-    start: 535
-  }],
-  [{
-    word: "고등학교",
-    frequency: 1117,
-    videoId: "Z2A5INv7Q7U",
-    start: 2405
-  },
-  {
-    word: "초등학교",
-    frequency: 747,
-    videoId: "3tt8TrIeOts",
-    start: 372
-  }],
-  [{
-    word: "루피",
-    frequency: 769,
-    videoId: "JgkdgAfTdBk",
-    start: 389
-  },
-  {
-    word: "관우",
-    frequency: 1092,
-    videoId: "n3AQATmdBjA",
-    start: 300
-  }],
-  [{
-    word: "무조건",
-    frequency: 8787,
-    videoId: "yuLMC1aULIY",
-    start: 593
-  },
-  {
-    word: "일단",
-    frequency: 33525,
-    videoId: "cc8cPIR_fy8",
-    start: 19
-  }],
-  [{
-    word: "종수",
-    frequency: 1845,
-    videoId: "3tt8TrIeOts",
-    start: 910
-  },
-  {
-    word: "단군",
-    frequency: 1363,
-    videoId: "zEU1JhXABUA",
-    start: 261
-  }],
-  [{
-    word: "진짜",
-    frequency: 67859,
-    videoId: "Emw6H8dqZCg",
-    start: 540
-  },
-  {
-    word: "사실",
-    frequency: 32738,
-    videoId: "5z3LQkxR3y4",
-    start: 376
-  }],
-  [{
-    word: "아이디어",
-    frequency: 1539,
-    videoId: "gPvGZvbc-QM",
-    start: 0
-  },
-  {
-    word: "이말년 (이말년씨리즈는 안 포함)",
-    frequency: 1247,
-    videoId: "gPvGZvbc-QM",
-    start: 334
-  }]
-];
+  let pairs = [
+    [{
+      word: "오케이",
+      frequency: 9172,
+      videoId: "ENVN5ZnM3aM",
+      start: 1615
+    },
+    {
+      word: "약간",
+      frequency: 31978,
+      videoId: "NaUaHNct5U4",
+      start:920
+    }],
+    [{
+      word: "왼쪽",
+      frequency: 10794,
+      videoId: "6Di6dOV396k",
+      start: 1797
+    },
+    {
+      word: "오른쪽",
+      frequency: 8151,
+      videoId: "6Di6dOV396k",
+      start: 1781
+    }],
+    [{
+      word: "기안",
+      frequency: 525,
+      videoId: "MNJBLTaBSPU",
+      start: 5
+    },
+    {
+      word: "호민 (주호민은 안 포함)",
+      frequency: 748,
+      videoId: "NaUaHNct5U4",
+      start: 554
+    }],
+    [{
+      word: "갑자기",
+      frequency: 10055,
+      videoId: "F5aIzghZVmk",
+      start: 345
+    },
+    {
+      word: "채팅",
+      frequency: 5257,
+      videoId: "GVcLoVO61aY",
+      start: 2407
+    }],
+    [{
+      word: "아저씨",
+      frequency: 7525,
+      videoId: "mikIpYryHqo",
+      start: 729
+    },
+    {
+      word: "마찬가지",
+      frequency: 889,
+      videoId: "qKRGsHDXNa0",
+      start: 240
+    }],
+    [{
+      word: "왜냐면",
+      frequency: 9797,
+      videoId: "nsNvtmEV32Q",
+      start: 790
+    },
+    {
+      word: "오히려",
+      frequency: 8611,
+      videoId: "RZm9KViZIxk",
+      start: 548
+    }],
+    [{
+      word: "포켓몬",
+      frequency: 3734,
+      videoId: "qKRGsHDXNa0",
+      start: 772
+    },
+    {
+      word: "삼국지",
+      frequency: 2578,
+      videoId: "3tt8TrIeOts",
+      start: 1201
+    }],
+    [{
+      word: "시청자",
+      frequency: 3228,
+      videoId: "Emw6H8dqZCg",
+      start: 41
+    },
+    {
+      word: "유튜브",
+      frequency: 5429,
+      videoId: "2JbgpQa0rV4",
+      start: 325
+    }],
+    [{
+      word: "도발",
+      frequency: 3198,
+      videoId: "wlxLdbb3L7o",
+      start: 345
+    },
+    {
+      word: "천보",
+      frequency: 365,
+      videoId: "9BF_ZhmCY-U",
+      start: 41
+    }],
+    [{
+      word: "컴퓨터",
+      frequency: 3669,
+      videoId: "A5J8DfvPt28",
+      start: 1005
+    },
+    {
+      word: "선생님",
+      frequency: 7680,
+      videoId: "nsNvtmEV32Q",
+      start: 1292
+    }],
+    [{
+      word: "여기",
+      frequency: 103495,
+      videoId: "RZm9KViZIxk",
+      start: 242
+    },
+    {
+      word: "거기",
+      frequency: 27006,
+      videoId: "8oxUo5b3-2M",
+      start: 535
+    }],
+    [{
+      word: "고등학교",
+      frequency: 1117,
+      videoId: "Z2A5INv7Q7U",
+      start: 2405
+    },
+    {
+      word: "초등학교",
+      frequency: 747,
+      videoId: "3tt8TrIeOts",
+      start: 372
+    }],
+    [{
+      word: "루피",
+      frequency: 769,
+      videoId: "JgkdgAfTdBk",
+      start: 389
+    },
+    {
+      word: "관우",
+      frequency: 1092,
+      videoId: "n3AQATmdBjA",
+      start: 300
+    }],
+    [{
+      word: "무조건",
+      frequency: 8787,
+      videoId: "yuLMC1aULIY",
+      start: 593
+    },
+    {
+      word: "일단",
+      frequency: 33525,
+      videoId: "cc8cPIR_fy8",
+      start: 19
+    }],
+    [{
+      word: "종수",
+      frequency: 1845,
+      videoId: "3tt8TrIeOts",
+      start: 910
+    },
+    {
+      word: "단군",
+      frequency: 1363,
+      videoId: "zEU1JhXABUA",
+      start: 261
+    }],
+    [{
+      word: "진짜",
+      frequency: 67859,
+      videoId: "Emw6H8dqZCg",
+      start: 540
+    },
+    {
+      word: "사실",
+      frequency: 32738,
+      videoId: "5z3LQkxR3y4",
+      start: 376
+    }],
+    [{
+      word: "아이디어",
+      frequency: 1539,
+      videoId: "gPvGZvbc-QM",
+      start: 0
+    },
+    {
+      word: "이말년 (이말년씨리즈는 안 포함)",
+      frequency: 1247,
+      videoId: "gPvGZvbc-QM",
+      start: 334
+    }]
+  ];
 
-let currentPairIndex = 0;
-let score = 0;
+  let currentPairIndex = 0;
+  let score = 0;
 
-let correctSound = new Audio("static/WoodPlankFlicks.mp3");
-let incorrectSound = new Audio("static/MetallicClank.mp3");
+  let correctSound = new Audio("static/WoodPlankFlicks.mp3");
+  let incorrectSound = new Audio("static/MetallicClank.mp3");
 
-function updatePair() {
-  let pair = pairs[currentPairIndex];
-  $("#word1").text(pair[0].word);
-  $("#video1").attr("src", `https://www.youtube-nocookie.com/embed/${pair[0].videoId}?start=${pair[0].start}`);
-  $("#word2").text(pair[1].word);
-  $("#video2").attr("src", `https://www.youtube-nocookie.com/embed/${pair[1].videoId}?start=${pair[1].start}`);
+  function updatePair() {
+    let pair = pairs[currentPairIndex];
+    $("#word1").text(pair[0].word);
+    $("#video1").attr("src", `https://www.youtube-nocookie.com/embed/${pair[0].videoId}?start=${pair[0].start}`);
+    $("#word2").text(pair[1].word);
+    $("#video2").attr("src", `https://www.youtube-nocookie.com/embed/${pair[1].videoId}?start=${pair[1].start}`);
 
-  $("#btn1").text("선택");
-  $("#btn2").text("선택");
-  $("#btn1").removeAttr("disabled");
-  $("#btn2").removeAttr("disabled");
+    $("#btn1").text("선택");
+    $("#btn2").text("선택");
+    $("#btn1").removeAttr("disabled");
+    $("#btn2").removeAttr("disabled");
 
-  $(".card").css("background-color", "");
+    $(".card").css("background-color", "");
 
-  updateProgress();
-}
+    updateProgress();
+  }
 
-function updateProgress() {
-  let progressText = `${currentPairIndex + 1}번 문제  -----  점수: ${score} / ${pairs.length}`;
-  $("#progress").text(progressText);
-}
+  function updateProgress() {
+    let progressText = `${currentPairIndex + 1}번 문제`;
+    $("#progress").text(progressText);
+    let scoreText = `점수: ${score} / ${pairs.length}`;
+    $("#scorePlace").text(scoreText);
+  }
 
-function animateNumber($element1, $element2, start1, end1, start2, end2, duration) {
-  return new Promise((resolve) => {
-    let startTime = null;
-    let currentTime = 0;
-    let minEnd = Math.min(end1, end2);
-    let maxEnd = Math.max(end1, end2);
+  function animateNumber($element1, $element2, start1, end1, start2, end2, duration) {
+    return new Promise((resolve) => {
+      let startTime = null;
+      let currentTime = 0;
+      let minEnd = Math.min(end1, end2);
+      let maxEnd = Math.max(end1, end2);
 
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      currentTime = timestamp - startTime;
-      let progress = currentTime / duration;
-      let currentNumber = Math.floor(progress * minEnd);
-      $element1.text(currentNumber);
-      $element2.text(currentNumber);
-      if (currentTime < duration) {
-        requestAnimationFrame(step);
-      } else {
-        $element1.text(end1);
-        $element2.text(end2);
-        resolve();
-        if (end1 !== end2) {
-          animateRemainingNumber(end1 === maxEnd ? $element1 : $element2, minEnd, maxEnd, 1300);
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        currentTime = timestamp - startTime;
+        let progress = currentTime / duration;
+        let currentNumber = Math.floor(progress * minEnd);
+        $element1.text(currentNumber);
+        $element2.text(currentNumber);
+        if (currentTime < duration) {
+          requestAnimationFrame(step);
+        } else {
+          $element1.text(end1);
+          $element2.text(end2);
+          resolve();
+          if (end1 !== end2) {
+            animateRemainingNumber(end1 === maxEnd ? $element1 : $element2, minEnd, maxEnd, 1300);
+          }
         }
       }
-    }
 
-    requestAnimationFrame(step);
-  });
-}
+      requestAnimationFrame(step);
+    });
+  }
 
-function animateRemainingNumber($element, start, end, duration) {
-  return new Promise((resolve) => {
-    let startTime = null;
-    let currentTime = 0;
+  function animateRemainingNumber($element, start, end, duration) {
+    return new Promise((resolve) => {
+      let startTime = null;
+      let currentTime = 0;
 
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      currentTime = timestamp - startTime;
-      let progress = currentTime / duration;
-      let currentNumber = Math.floor(start + (end - start) * progress);
-      $element.text(currentNumber);
-      if (currentTime < duration) {
-        requestAnimationFrame(step);
-      } else {
-        $element.text(end);
-        resolve();
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        currentTime = timestamp - startTime;
+        let progress = currentTime / duration;
+        let currentNumber = Math.floor(start + (end - start) * progress);
+        $element.text(currentNumber);
+        if (currentTime < duration) {
+          requestAnimationFrame(step);
+        } else {
+          $element.text(end);
+          resolve();
+        }
       }
-    }
 
-    requestAnimationFrame(step);
+      requestAnimationFrame(step);
+    });
+  }
+
+  function checkAnswer(guess) {
+    let pair = pairs[currentPairIndex];
+    let correctWord = pair[0].frequency > pair[1].frequency ? pair[0].word : pair[1].word;
+
+    $("#btn1").attr("disabled", "true");
+    $("#btn2").attr("disabled", "true");
+
+    let minFrequency = Math.min(pair[0].frequency, pair[1].frequency);
+    animateNumber($("#btn1"), $("#btn2"), 0, pair[0].frequency, 0, pair[1].frequency, 2000).then(() => {
+
+      if (guess.text() === correctWord) {
+        score++;
+        correctSound.play();
+        $("#progress").append(' 정답! 🥳');
+        guess.parent().parent().css("background-color", "green");
+      } else {
+        incorrectSound.play();
+        $("#progress").append(" 오답! 😅");
+        guess.parent().parent().css("background-color", "red");
+      }
+
+      $("#scorePlace").text(` 점수: ${score} / ${pairs.length}`)
+
+      currentPairIndex++;
+
+      if (currentPairIndex < pairs.length) {
+        $("#nextBtn").show();
+      } else {
+        $("#progress").text(`최종 점수: ${score}/${pairs.length}.`);
+        $("#nextBtn").text("다시하기");
+        $("#nextBtn").hide();
+      }
+
+    });
+  }
+
+  $(document).ready(function() {
+
+    updatePair();
+    updateProgress();
+
+    $("#btn1").click(function() {
+      let guess = $("#word1");
+      checkAnswer(guess);
+    });
+
+    $("#btn2").click(function() {
+      let guess = $("#word2");
+      checkAnswer(guess);
+    });
+
+    $("#nextBtn").click(function() {
+
+      if ($(this).text() === "다시하기") {
+        currentPairIndex = 0;
+        score = 0;
+
+        updatePair();
+        updateProgress();
+
+        $(this).text("다음 문제");
+        $(this).hide();
+
+      } else {
+        $(this).hide();
+
+        updatePair();
+        updateProgress();
+
+      }
+    });
   });
-}
 
-function checkAnswer(guess) {
-  let pair = pairs[currentPairIndex];
-  let correctWord = pair[0].frequency > pair[1].frequency ? pair[0].word : pair[1].word;
-
-  $("#btn1").attr("disabled", "true");
-  $("#btn2").attr("disabled", "true");
-
-  let minFrequency = Math.min(pair[0].frequency, pair[1].frequency);
-  animateNumber($("#btn1"), $("#btn2"), 0, pair[0].frequency, 0, pair[1].frequency, 2000).then(() => {
-
-    if (guess.text() === correctWord) {
-      score++;
-      correctSound.play();
-      $("#progress").text('정답!');
-      guess.parent().parent().css("background-color", "green");
-    } else {
-      incorrectSound.play();
-      $("#progress").text("오답!");
-      guess.parent().parent().css("background-color", "red");
-    }
-
-    $("#progress").append(` ${currentPairIndex + 1}번 문제  -----  점수: ${score} / ${pairs.length}`)
-
-    currentPairIndex++;
-
-    if (currentPairIndex < pairs.length) {
-      $("#nextBtn").show();
-    } else {
-      $("#progress").text(`최종 점수: ${score}/${pairs.length}.`);
-      $("#nextBtn").text("다시하기");
-      $("#nextBtn").hide();
-    }
-
-  });
-}
-
-$(document).ready(function() {
-
-  updatePair();
-  updateProgress();
-
-  $("#btn1").click(function() {
-    let guess = $("#word1");
-    checkAnswer(guess);
-  });
-
-  $("#btn2").click(function() {
-    let guess = $("#word2");
-    checkAnswer(guess);
-  });
-
-  $("#nextBtn").click(function() {
-
-    if ($(this).text() === "다시하기") {
-      currentPairIndex = 0;
-      score = 0;
-
-      updatePair();
-      updateProgress();
-
-      $(this).text("다음 문제");
-      $(this).hide();
-
-    } else {
-      $(this).hide();
-
-      updatePair();
-      updateProgress();
-
-    }
-  });
-});
-
-</script>
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
